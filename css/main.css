@@ -1,0 +1,585 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap');
+
+body {
+    font-family: 'Roboto', sans-serif;
+    overflow-x: hidden;
+}
+
+/* header */
+/* 헤더 햄버거버튼을 클릭하면 trasform으로 위로 올려놨던 
+텍스트와 이미지가 내려오고 햄버거 버튼이 엑스로 바뀜*/
+.headerM {
+    z-index: 500;
+    position: fixed;
+    background-color: rgba(255,255,255,0.3);
+    box-sizing: border-box;
+    box-shadow:2px 4px 6px rgba(34,34,34,0.3);
+    width: 100vw;
+    height: 60px;
+    top: 0;
+    transition: All 0.2s ease;
+    -webkit-transition: All 0.2s ease; 
+    -moz-transition: All 0.2s ease; 
+    -o-transition: All 0.2s ease; 
+}
+#menu {
+    display: block;
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    width: 100%;
+    height: 30px;
+    flex-direction: column;
+    -webkit-user-select: none;
+    user-select: none;
+}
+#menu input {
+    display: block;
+    width: 40px;
+    height: 32px;
+    position: absolute;
+    cursor: pointer;
+    opacity: 0;
+    z-index: 22;
+    left: 830px;
+}
+#menu span {
+    left: 830px;
+    background: #333;
+    display: block;
+    width: 33px;
+    height: 4px;
+    margin-bottom: 5px;
+    position: relative;
+    z-index: 21;
+    transform-origin: 4px 0px;
+    transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
+                opacity 0.55s ease;
+}
+#menu span:first-child{
+    transform-origin: 0% 0%;
+}
+#menu span:nth-last-child(2)
+{
+  transform-origin: 0% 100%;
+}
+#menu input:checked ~ span
+{
+  opacity: 1;
+  transform: rotate(45deg) translate(-2px, -1px);
+  background: #333;
+}
+#menu input:checked ~ span:nth-last-child(3)
+{
+  opacity: 0;
+  transform: rotate(0deg) scale(0.2, 0.2);
+}
+#menu input:checked ~ span:nth-last-child(2)
+{
+  transform: rotate(-45deg) translate(0, -1px);
+}
+#menu input:checked ~ ul
+{
+  transform: none;
+}
+.hamburger {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    
+}
+.hamburger .line {
+    width: 100%;
+    height: 3px;
+    background-color: #000;
+    position: absolute;
+}
+.hamburger .line:nth-child(2) {
+    top: 50%;
+    margin-top: -2px;
+}
+.hamburger .line:nth-child(3) {
+    bottom: 0;
+}
+.nav {
+    width: 100%;
+    align-items: center;
+    top: -5px;
+    right: 0;
+    display: flex;
+    position: absolute;
+    transform-origin: 0% 0%;
+    transform: translate(0, -200%);
+    transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
+}
+.nav li {
+    margin-right: 30px;
+    text-transform:uppercase;
+    font-size: 22px;
+    font-weight: 500;
+}
+.nav li:first-child {
+    margin-left: 30px;
+}
+.nav li a {
+    color: #999;
+    transition: color 0.3s ease;
+}
+.nav li a:hover {
+    color: #333;
+}
+.nav .right {
+    display: flex;
+    position: absolute;
+    right: 0;
+}
+.nav li img {
+    width: 30px;
+    transition:all 0.2s
+}
+.nav li a img:last-child{
+    display: none;
+}
+.nav li a:hover img:first-child{
+    display: none;
+} 
+.nav li a:hover img:last-child{
+    display: inline-block;
+}
+
+/* logo */
+.logo {
+    position: relative;
+    text-align: center;
+    padding: 20px 0px;
+    margin-top: 60px;
+}
+.logo img {
+    width: 150px;
+}
+
+/* main-video */
+.main-visual {
+    display: flex;
+}
+.main-visual video {
+    width: 100%;
+}
+
+/* contents */
+.wrap {
+    position: relative;
+}
+/* img-wrap - 가로 스크롤 */
+.wrap .img-wrap {
+    z-index: 300;
+    overflow-x: scroll;
+    white-space: nowrap;
+    transition: all 0.2s;
+    will-change: transform;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+/* 스크롤바 안보이게 */
+.wrap .img-wrap::-webkit-scrollbar {
+    display: none; 
+}
+/* 가로 스크롤 마우스로 드래그했을때 추가될 active 클래스 */
+.wrap .img-wrap.active {
+    transform: scale(0.95);
+    cursor: grabbing;
+    cursor: -webkit-grabbing;
+}
+.wrap .right-wrap .img-wrap.active .figure {
+    transform: rotate(3deg);
+}
+.wrap .left-wrap .img-wrap.active .figure {
+    transform: rotate(-3deg);
+}
+.wrap .img-wrap .figure:hover img {
+    -webkit-transform: scale(1.05);
+    transform: scale(1.05);
+    -webkit-transition: all 0.8s;
+    transition: all 0.8s;
+    opacity: 0.8;
+}
+.wrap .right-wrap {
+    padding-top: 150px;
+    margin-right: -130px;
+    /* opacity: 0; */
+}
+.wrap .right-wrap .wrap-tit {
+    position: absolute;
+    font-size: 60px;
+    font-weight: 700;
+    text-transform: uppercase;
+    left: 5%;
+    padding-top: 400px;
+    z-index: 301;
+    margin-left: -50px;
+    /* opacity: 1; */
+}
+.wrap .right-wrap .img-wrap {
+    display: flex;
+    position: relative;
+    margin-left: 20%;
+}
+.wrap .right-wrap .img-wrap .figure {
+    width: 500px;
+    height: 600px;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+.wrap .right-wrap .img-wrap .figure img {
+    /* width: 100%; */
+    height: 100%;
+    cursor: pointer;
+    transition: all 0.3s ease-out;
+    /* opacity: 0.8; */
+}
+.wrap .right-wrap .img-wrap .figure:nth-child(2){
+    margin: 0px 30px;
+}
+.wrap .right-wrap .img-wrap .figure:nth-child(3){
+    margin-right: 30px;
+}
+.wrap .left-wrap {
+    padding-top: 150px;
+    margin-left: -20px;
+    /* opacity: 0; */
+}
+.wrap .left-wrap .wrap-tit {
+    position: absolute;
+    font-size: 60px;
+    font-weight: 700;
+    text-transform: uppercase;
+    /* color: #80AC9F; */
+    right: 5%;
+    padding-top: 400px;
+    z-index: 301;
+    margin-right: -50px;
+    /* opacity: 1; */
+}
+.wrap .left-wrap .img-wrap {
+    display: flex;
+    position: relative;
+    margin-right: 20%;
+    /* padding-right: 20%; */
+    /* margin-right: 20%; */
+}
+.wrap .left-wrap .img-wrap .figure {
+    width: 500px;
+    height: 600px;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+.wrap .left-wrap .img-wrap .figure img {
+    height: 100%;
+    cursor: pointer;
+    transition: all 0.3s ease-out;
+}
+.wrap .left-wrap .img-wrap .figure:nth-child(2){
+    margin: 0px 30px;
+}
+.wrap .left-wrap .img-wrap .figure:nth-child(3){
+    margin-right:30px;
+}
+
+/* footer */
+.footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    width: 97%;
+    margin-left: auto;
+    margin-right: auto;
+}
+.footer .foo {
+    font-size: 15px;
+    text-transform: uppercase;
+    font-weight: 500;
+    padding-top: 200px;
+    padding-bottom: 20px;
+}
+.footer img {
+    height: 45px;
+    cursor: pointer;
+}
+
+/* pop-up section */
+/* 활성화되기전엔 안보이게 / 활성화되면 보이게 */
+#section-1 {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 500ms;
+}
+#section-1:target {
+    visibility: visible;
+    opacity: 1;
+}
+#section-2 {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 500ms;
+}
+#section-2:target {
+    visibility: visible;
+    opacity: 1;
+}
+#section-3 {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 500ms;
+}
+#section-3:target {
+    visibility: visible;
+    opacity: 1;
+}
+#section-4 {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 500ms;
+}
+#section-4:target {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* close-btn */
+.close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    transition: all 200ms;
+    font-size: 30px;
+    font-weight: bold;
+    text-decoration: none;
+}
+#section-1 .close {
+    color: #6cb3a8;
+}
+#section-1 .close:hover {
+    color: #333;
+}
+#section-2 .close {
+    color: #E58E3C;
+}
+#section-2 .close:hover {
+    color: #333;
+}
+#section-3 .close {
+    color: #6cb3a8;
+}
+#section-3 .close:hover {
+    color: #333;
+}
+#section-4 .close {
+    color: #E58E3C;
+}
+#section-4 .close:hover {
+    color: #333;
+}
+
+/* pop-up section 레이아웃 */
+.section {
+    z-index: 310;
+    /* opacity: 0; */
+    top: 0;
+    position: fixed;
+    color: #666;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+}
+.section .section_tit {
+    padding: 50px 0px;
+    font-weight: 700;
+    font-size: 40px;
+    text-transform: uppercase;
+}
+.section .section_desc {
+    width: 1000px;
+    font-size: 18px;
+    line-height: 30px;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* accordion */
+.accordion{
+    position:relative;
+    width:100%;
+    height:550px;
+    padding: 50px 0px;
+}
+.view{
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+.view-item{
+    overflow: hidden;
+    position: relative;
+    flex: 1;
+    height: 100%;
+    transition: all 500ms ease-in-out;
+    /* flex - 부모 요소의 width 혹은 height 에서 item 개수에 따른 비율로 적용 */
+}
+.view-item:hover {
+    flex-basis: 350px;
+}
+.view-item::before{
+    content:"";
+    display:block;
+    position:absolute;
+    z-index:1;
+    top:0;right:0;bottom:0;left:0;
+}
+.view-item .image-wrap{
+    position:absolute;
+    top:0;right:0;bottom:0;left:0;
+}
+.view-item .menu-view{
+    display:-webkit-box;
+    display:-ms-flexbox;
+    display:flex;
+    position:relative;
+    z-index:2;
+    width:100%;
+    height:100%;
+    -webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;
+    -webkit-box-align:center;-ms-flex-align:center;align-items:center;
+    -webkit-box-orient:vertical;-ms-flex-direction:column;
+    flex-direction:column;
+    transition: 0.5s ease-in-out;
+    background-color:rgba(255,255,255,0.2)
+}
+.view-item .menu-view:hover{
+    background-color:rgba(255,255,255,0);
+    transition: 0.5s ease-in-out;
+}
+.view-item .menu-view span{
+    display:block;visibility:hidden;
+    position:relative;opacity:0;
+    -webkit-transition:all 300ms cubic-bezier(0.445, 0.050, 0.550, 0.950);
+    -moz-transition:all 300ms cubic-bezier(0.445, 0.050, 0.550, 0.950);
+    -o-transition:all 300ms cubic-bezier(0.445, 0.050, 0.550, 0.950);
+    -ms-transition:all 300ms cubic-bezier(0.445, 0.050, 0.550, 0.950);
+    transition:all 300ms cubic-bezier(0.445, 0.050, 0.550, 0.950)
+}
+.view-item .menu-view span.title{
+    text-transform:uppercase;font-size:1.667rem;
+    font-weight:700;line-height:2.167rem;
+    -webkit-transform:translateY(10px);
+    -moz-transform:translateY(10px);
+    -o-transform:translateY(10px);
+    -ms-transform:translateY(10px);
+    transform:translateY(10px)
+}
+.view-item .menu-view span.desc{
+    font-size:1.167rem;line-height:1.667rem;
+    -webkit-transform:translateY(30px);
+    -moz-transform:translateY(30px);
+    -o-transform:translateY(30px);
+    -ms-transform:translateY(30px);
+    transform:translateY(30px)
+}
+.view-item .menu-view span.title + span.desc{
+    margin-top:8px
+}
+.view-item:hover .menu-view span{
+    color: #fff;
+    visibility:visible;opacity:1;
+    -webkit-transition-delay:180ms;
+    -moz-transition-delay:180ms;
+    -o-transition-delay:180ms;
+    -ms-transition-delay:180ms;
+    transition-delay:180ms
+}
+.view-item:hover .menu-view span.title{
+    -webkit-transform:translateY(0);
+    -moz-transform:translateY(0);
+    -o-transform:translateY(0);
+    -ms-transform:translateY(0);
+    transform:translateY(0)
+}
+.view-item img{
+    display:block;
+    width:100%;
+    height:100%;
+    object-fit:cover
+}
+
+/* mouse-cursor */
+#cursor-bg,#progress{
+    overflow:hidden;
+    position:fixed;
+    top:50%;
+    left:50%;
+    -webkit-transform:translateX(-50%) translateY(-50%);
+    -moz-transform:translateX(-50%) translateY(-50%);
+    -o-transform:translateX(-50%) translateY(-50%);
+    -ms-transform:translateX(-50%) translateY(-50%);
+    transform:translateX(-50%) translateY(-50%);
+    pointer-events:none
+}
+#cursor-bg{
+    z-index:400;
+    width:40px;
+    height:40px;
+    border:3px solid #E58E3C;
+    border-radius:50%;
+    -webkit-transition:width 200ms cubic-bezier(0.455,0.030,0.515,0.955),height 200ms cubic-bezier(0.455,0.030,0.515,0.955),background-color 200ms cubic-bezier(0.455,0.030,0.515,0.955),border-color 200ms cubic-bezier(0.455,0.030,0.515,0.955);-moz-transition:width 200ms cubic-bezier(0.455,0.030,0.515,0.955),height 200ms cubic-bezier(0.455,0.030,0.515,0.955),background-color 200ms cubic-bezier(0.455,0.030,0.515,0.955),border-color 200ms cubic-bezier(0.455,0.030,0.515,0.955);-o-transition:width 200ms cubic-bezier(0.455,0.030,0.515,0.955),height 200ms cubic-bezier(0.455,0.030,0.515,0.955),background-color 200ms cubic-bezier(0.455,0.030,0.515,0.955),border-color 200ms cubic-bezier(0.455,0.030,0.515,0.955);-ms-transition:width 200ms cubic-bezier(0.455,0.030,0.515,0.955),height 200ms cubic-bezier(0.455,0.030,0.515,0.955),background-color 200ms cubic-bezier(0.455,0.030,0.515,0.955),border-color 200ms cubic-bezier(0.455,0.030,0.515,0.955);transition:width 200ms cubic-bezier(0.455,0.030,0.515,0.955),height 200ms cubic-bezier(0.455,0.030,0.515,0.955),background-color 200ms cubic-bezier(0.455,0.030,0.515,0.955),border-color 200ms cubic-bezier(0.455,0.030,0.515,0.955)
+}
+#progress{
+    z-index: 500;
+    color:#fff;
+    width:60px;
+    height:60px;
+    border-radius:50%;
+    -webkit-transition:width 200ms cubic-bezier(0.455,0.030,0.515,0.955);
+    -moz-transition:width 200ms cubic-bezier(0.455,0.030,0.515,0.955);
+    -o-transition:width 200ms cubic-bezier(0.455,0.030,0.515,0.955);
+    -ms-transition:width 200ms cubic-bezier(0.455,0.030,0.515,0.955);
+    transition:width 200ms cubic-bezier(0.455,0.030,0.515,0.955)
+}
+#cursor-bg.active{
+    width:70px;
+    height:70px;
+    background-color:#E58E3C;
+    border-color:#E58E3C;
+}
+#progress.active{
+    width:60px;
+    height:60px;
+}
+#progress span{
+    display:block;
+    position:absolute;
+    top:50%;left:50%;
+    text-align:center;
+    -webkit-transform:translateX(-50%) translateY(-50%);
+    -moz-transform:translateX(-50%) translateY(-50%);
+    -o-transform:translateX(-50%) translateY(-50%);
+    -ms-transform:translateX(-50%) translateY(-50%);
+    transform:translateX(-50%) translateY(-50%)
+}
+#progress.active span::after{
+    content:'drag';
+    text-transform:uppercase;
+    font-size:15px;
+    font-weight: 700;
+    line-height:1.333rem;
+    opacity:0;
+    -webkit-transition:opacity 200ms cubic-bezier(0.455,0.030,0.515,0.955);
+    -moz-transition:opacity 200ms cubic-bezier(0.455,0.030,0.515,0.955);
+    -o-transition:opacity 200ms cubic-bezier(0.455,0.030,0.515,0.955);
+    -ms-transition:opacity 200ms cubic-bezier(0.455,0.030,0.515,0.955);
+    transition:opacity 200ms cubic-bezier(0.455,0.030,0.515,0.955)
+}
+#progress.active span::after{
+    opacity:1.0
+}
